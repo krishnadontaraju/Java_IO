@@ -58,4 +58,9 @@ public class PayRollOperation {
         return new PayRollFileIO().countDataOfPayBill();
     }
 
+    public List<PayRoll> readFileEntries(IOService ioService){
+        if(ioService.equals(IOService.FILE_IO));
+        return new PayRollFileIO().readData();
+    }
+
 }
