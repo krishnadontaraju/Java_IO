@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
+
 public class FileApiTest {
     private static String HOME_LOCATION = System.getProperty("Path","C:\\Users\\manik\\Desktop\\new\\Program_tester\\Donut\\test");
     private static String NIO_FILE = "TemporaryFile";
@@ -48,5 +49,12 @@ public class FileApiTest {
         Files.newDirectoryStream(testPath , newPath -> newPath.toFile().isFile() &&
                                                         newPath.toString().startsWith("temporaryFile"))
                                 .forEach(System.out::println);
+    }
+
+    @Test
+    public void givenADirectoryWhenWatchedListsAllTheActivities() throws IOException {
+        Path dir = Paths.get(HOME_LOCATION+"\\"+NIO_FILE);
+        Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+        new WatchService(dir).processEvents();
     }
 }
