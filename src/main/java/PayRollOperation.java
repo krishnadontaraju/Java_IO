@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class PayRollOperation {
 
+    public enum IOService {
+        CONSOLE_IO, FILE_IO, DB_IO, REST_IO
+    }
+    
     private List<PayRoll> payRollList;
 
     public PayRollOperation(){}
@@ -18,7 +22,7 @@ public class PayRollOperation {
 
         newPayRollOperation.readPayRollDetails(fetch);
 
-        newPayRollOperation.writePayRollDetails();
+        newPayRollOperation.writePayRollDetails(IOService.FILE_IO);
     }
 
     private void readPayRollDetails(Scanner inputFetcher){
@@ -32,7 +36,11 @@ public class PayRollOperation {
         double employeeSalary = inputFetcher.nextDouble();
     }
 
-    private void writePayRollDetails(){
-        System.out.println("THE DETAILS OF THE PAYROLL ARE : \n"+payRollList);
-    }
+    private void writePayRollDetails(IOService ioService){
+        if(ioService.equals(IOService.CONSOLE_IO)) {
+            System.out.println("\n Writing Employee Payroll Roster to Console\n" + payRollList);
+        }
+        else if(ioService.equals(IOService.FILE_IO)){
+            new PayRollFileIO().writeDataToAFile(payRollList);
+        }    }
 }
