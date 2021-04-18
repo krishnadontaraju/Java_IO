@@ -42,5 +42,13 @@ public class PayRollOperation {
         }
         else if(ioService.equals(IOService.FILE_IO)){
             new PayRollFileIO().writeDataToAFile(payRollList);
-        }    }
+        }
+    }
+
+    public void printData(IOService ioService) {
+        if(ioService.equals(IOService.FILE_IO))
+            new PayRollFileIO().printDataFromFile();
+    }
+
+
 }
