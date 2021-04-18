@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -36,7 +39,7 @@ public class PayRollOperation {
         double employeeSalary = inputFetcher.nextDouble();
     }
 
-    private void writePayRollDetails(IOService ioService){
+    public void writePayRollDetails(IOService ioService){
         if(ioService.equals(IOService.CONSOLE_IO)) {
             System.out.println("\n Writing Employee Payroll Roster to Console\n" + payRollList);
         }
@@ -50,5 +53,9 @@ public class PayRollOperation {
             new PayRollFileIO().printDataFromFile();
     }
 
+    public long countEntries(IOService ioService) {
+        if(ioService.equals(IOService.FILE_IO));
+        return new PayRollFileIO().countDataOfPayBill();
+    }
 
 }
